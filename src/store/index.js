@@ -18,6 +18,10 @@ export default new Vuex.Store({
       ctx.commit('addTask', task)
     }
   },
+  getters: {
+    tasks: state => state.tasks,
+    taskById: state => id => state.tasks.find(t => t.id === id)
+  },
   modules: {
   }
 })
