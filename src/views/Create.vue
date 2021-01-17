@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col s6 offset-s3">
+    <div class="col s12  m10  offset-l2 l8">
       <h1>Create</h1>
       <form @submit.prevent="submitHandler">
         <div class="input-field">
@@ -20,7 +20,8 @@
               id="description"
               class="materialize-textarea"
               v-model="description"
-          ></textarea>
+          >
+          </textarea>
           <label for="description">Textarea</label>
           <span class="character-counter symbol-counter">{{ description.length }}/2048</span>
         </div>
