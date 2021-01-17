@@ -45,7 +45,7 @@ export default {
       title: '',
       description: '',
       chips: null,
-      dueDate: null,
+      dueDate: null
     }
   },
   mounted() {
@@ -66,7 +66,8 @@ export default {
         title: this.title,
         description: this.description,
         chips: this.chips.chipsData,
-        dueDate: this.dueDate.date
+        dueDate: this.dueDate.date,
+        status: 'active'
       }
       this.createTask(task)
       this.$router.push('/list')

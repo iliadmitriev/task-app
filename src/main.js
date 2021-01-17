@@ -6,6 +6,8 @@ import store from './store'
 
 import 'materialize-css/dist/js/materialize.min'
 
+import './filters'
+
 Vue.config.productionTip = false
 
 new Vue({
