@@ -54,7 +54,8 @@ export default {
   name: "Navbar",
   mounted() {
     M.Sidenav.init(this.$refs.sidenav, {
-
+      draggable: true,
+      preventScrolling: true
     })
   }
 }
