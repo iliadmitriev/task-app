@@ -27,7 +27,7 @@
       </div>
     </nav>
 
-    <ul class="sidenav blue lighten-5" id="mobile-demo">
+    <ul ref="sidenav" class="sidenav blue lighten-5" id="mobile-demo">
       <router-link
           tag="li"
           to="/"
@@ -53,9 +53,8 @@
 export default {
   name: "Navbar",
   mounted() {
-    document.addEventListener('DOMContentLoaded', ()=> {
-      const elements = document.querySelectorAll('.sidenav')
-      const instances = M.Sidenav.init(elements)
+    M.Sidenav.init(this.$refs.sidenav, {
+
     })
   }
 }
