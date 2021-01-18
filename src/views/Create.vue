@@ -22,7 +22,7 @@
               v-model="description"
           >
           </textarea>
-          <label for="description">Textarea</label>
+          <label for="description">Description</label>
           <span class="character-counter symbol-counter">{{ description.length }}/2048</span>
         </div>
         <div class="input-field">
