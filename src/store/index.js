@@ -11,11 +11,23 @@ export default new Vuex.Store({
     addTask(state, task) {
       state.tasks.push(task)
       localStorage.setItem('tasks', JSON.stringify(state.tasks))
+    },
+    saveTask(state, task) {
+      const idx = state.tasks.findIndex(t => t.id === task.id)
+      const oldTask = state.tasks[idx]
+      state.tasks[idx] = {
+        ...oldTask,
+        ...task
+      }
+      localStorage.setItem('tasks', JSON.stringify(state.tasks))
     }
   },
   actions: {
     createTask(ctx, task) {
       ctx.commit('addTask', task)
+    },
+    updateTask(ctx, task) {
+      ctx.commit('saveTask', task)
     }
   },
   getters: {
