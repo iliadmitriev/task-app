@@ -50,21 +50,24 @@
         </td>
       </tr>
       </tbody>
+      <div class="fixed-action-btn">
       <a
           class="btn-floating btn-large waves-effect waves-light"
+          ref="floatingAdd"
           @click="$router.push('/')"
       >
         <i class="material-icons">add</i>
       </a>
+      </div>
     </table>
     <div v-else>
       <p>There is no tasks. You can create new one</p>
-      <a
+      <button
           class="btn"
           @click="$router.push('/')"
       >
         Create
-      </a>
+      </button>
     </div>
   </div>
 </template>
@@ -79,6 +82,11 @@ export default {
   },
   data() {
     return {}
+  },
+  mounted() {
+    if (this.tasks.length) {
+      M.FloatingActionButton.init(this.$refs.floatingAdd, {})
+    }
   },
   methods: {
     isDueDate(t) {
