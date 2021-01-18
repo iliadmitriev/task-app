@@ -66,6 +66,7 @@
           class="btn-large"
           @click="$router.push('/')"
       >
+        <i class="material-icons right">arrow_forward</i>
         Create
       </button>
     </div>
