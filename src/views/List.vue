@@ -63,7 +63,7 @@
     <div v-else>
       <p>There is no tasks. You can create new one</p>
       <button
-          class="btn"
+          class="btn-large"
           @click="$router.push('/')"
       >
         Create
