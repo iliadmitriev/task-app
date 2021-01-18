@@ -42,10 +42,20 @@
         </div>
         <button
             type="submit"
-            class="btn waves-effect waves-light"
+            class="waves-effect waves-light btn-large col s5"
         >
+          <i class="material-icons left">save</i>
           Save
         </button>
+        <button
+            type="button"
+            class="waves-effect waves-light btn-large blue col s5 offset-s1"
+            @click="completeHandler"
+        >
+          <i class="material-icons left">check</i>
+          Complete
+        </button>
+
       </form>
 
 
@@ -90,14 +100,14 @@ export default {
       setDefaultDate: true
     })
 
-    setTimeout(()=>{
+    setTimeout(() => {
       M.updateTextFields()
       M.textareaAutoResize(this.$refs.description)
-    },0)
+    }, 0)
 
   },
   methods: {
-    ...mapActions(['updateTask']),
+    ...mapActions(['updateTask', 'completeTask']),
     submitHandler() {
       this.updateTask({
         id: this.task.id,
@@ -106,6 +116,10 @@ export default {
         chips: this.chips.chipsData,
         dueDate: this.dueDate.date
       })
+      this.$router.push('/list')
+    },
+    completeHandler() {
+      this.completeTask(this.task.id)
       this.$router.push('/list')
     }
   }

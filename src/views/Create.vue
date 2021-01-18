@@ -29,7 +29,10 @@
           <input id="dueDate" type="text" class="datepicker" ref="dueDate">
           <label for="dueDate">Due date</label>
         </div>
-        <button type="submit" class="btn waves-effect waves-light">Create</button>
+        <button type="submit" class="btn-large waves-effect waves-light">
+          <i class="material-icons left">save</i>
+          Create
+        </button>
       </form>
     </div>
   </div>
