@@ -37,15 +37,33 @@
             {{ task.description | truncate(50) }}
           </router-link>
         </td>
-        <td class="nowrap">{{ task.dueDate | dateFormat }}</td>
-        <td>{{ task.status }}</td>
+        <td
+            class="nowrap"
+            :class="{'deep-orange lighten-3': isDueDate(task) && !isCompleted(task)}"
+        >
+          {{ task.dueDate | dateFormat }}
+        </td>
+        <td
+            :class="{'green lighten-3': isCompleted(task)}"
+        >
+          {{ task.status }}
+        </td>
       </tr>
       </tbody>
+      <div class="fixed-action-btn">
+      <a
+          class="btn-floating btn-large waves-effect waves-light"
+          ref="floatingAdd"
+          @click="$router.push('/')"
+      >
+        <i class="material-icons">add</i>
+      </a>
+      </div>
     </table>
     <div v-else>
       <p>There is no tasks. You can create new one</p>
       <button
-          class="btn btn-large"
+          class="btn-large"
           @click="$router.push('/')"
       >
         <i class="material-icons right">arrow_forward</i>
@@ -65,6 +83,19 @@ export default {
   },
   data() {
     return {}
+  },
+  mounted() {
+    if (this.tasks.length) {
+      M.FloatingActionButton.init(this.$refs.floatingAdd, {})
+    }
+  },
+  methods: {
+    isDueDate(t) {
+      return Date.parse(t.dueDate) < Date.now()
+    },
+    isCompleted(t) {
+      return t.status === 'completed'
+    }
   }
 }
 </script>
