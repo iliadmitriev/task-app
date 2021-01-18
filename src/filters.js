@@ -1,7 +1,7 @@
 import Vue from "vue";
 
 const filterTruncate = (text, length, clamp = '...') => {
-    if (text.length == 0 || text.length <= length - clamp.length) {
+    if (text.length === 0 || text.length <= length - clamp.length) {
         return text
     } else {
         return text.substring(0, length) + clamp
@@ -15,7 +15,6 @@ const dateFormat = (value) => {
         return value
     }
 }
-
 
 Vue.filter('truncate', filterTruncate)
 Vue.filter('dateFormat', dateFormat)
