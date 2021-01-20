@@ -1,41 +1,67 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {fetchAllTasks, fetchTaskById, patchTask, putTask} from '@/store/firebase'
+
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        tasks: JSON.parse(localStorage.getItem('tasks') || '[]')
+        tasks: [],
+        currentTask: null,
+        currentId: null
     },
     mutations: {
-        addTask(state, task) {
-            state.tasks.push(task)
-            localStorage.setItem('tasks', JSON.stringify(state.tasks))
+        loadTasks(state, tasks) {
+            state.tasks = tasks
         },
-        saveTask(state, task) {
-            const idx = state.tasks.findIndex(t => t.id === task.id)
+        addTask(state, {idx, task}) {
+            state.tasks[idx] = task
+        },
+        saveTask(state, {idx, task}) {
             const oldTask = state.tasks[idx]
             state.tasks[idx] = {
                 ...oldTask,
                 ...task
             }
-            localStorage.setItem('tasks', JSON.stringify(state.tasks))
+        },
+        setCurrentTask(state, {task, id}) {
+            state.currentTask = task
+            state.currentId = id
         }
     },
     actions: {
+        getAllTasks(ctx) {
+            fetchAllTasks()
+                .then((tasks) => ctx.commit('loadTasks', tasks))
+        },
+        async getTaskById(ctx, id) {
+            await fetchTaskById(id)
+                .then(task => ctx.commit('setCurrentTask', {task, id}))
+        },
         createTask(ctx, task) {
-            ctx.commit('addTask', task)
+            putTask(task)
+                .then(json => json.name)
+                .then((id) => ctx.commit('addTask', {id, task}))
         },
         updateTask(ctx, task) {
-            ctx.commit('saveTask', task)
+            const idx = ctx.state.currentId
+            patchTask(idx, task)
+                .then(() => ctx.commit('saveTask', {idx, task}))
         },
-        completeTask(ctx, taskId) {
-            ctx.commit('saveTask', {id: taskId, status: 'completed'})
+        completeTask(ctx) {
+            const idx = ctx.state.currentId
+            const data = {
+                status: 'completed'
+            }
+            patchTask(idx, data)
+                .then(() => ctx.commit('saveTask', {idx, data}))
         }
     },
     getters: {
-        tasks: state => state.tasks,
-        taskById: state => id => state.tasks.find(t => t.id === id)
+        tasks: state => Object.entries(state.tasks).map(el => ({id: el[0], ...el[1]})),
+        currentTask: state => state.currentTask,
+        currentId: state => state.currentId
     },
     modules: {}
 })

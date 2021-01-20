@@ -64,8 +64,6 @@ export default {
     ...mapActions(['createTask']),
     submitHandler() {
       const task = {
-        // TODO: refactor id
-        id: Date.now(),
         title: this.title,
         description: this.description,
         chips: this.chips.chipsData,

@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   name: "List",
@@ -85,11 +85,14 @@ export default {
     return {}
   },
   mounted() {
+    this.getAllTasks()
+
     if (this.tasks.length) {
       M.FloatingActionButton.init(this.$refs.floatingAdd, {})
     }
   },
   methods: {
+    ...mapActions(['getAllTasks']),
     isDueDate(t) {
       return Date.parse(t.dueDate) < Date.now()
     },

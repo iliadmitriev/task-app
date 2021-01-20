@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div v-if="task" class="col s12  m10  offset-l2 l8">
+    <div v-if="currentTask" class="col s12  m10  offset-l2 l8">
       <h1>{{ title }}</h1>
       <div class="divider"></div>
       <form @submit.prevent="submitHandler">
@@ -78,25 +78,23 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['taskById']),
-    task() {
-      return this.taskById(+this.$route.params.id)
-    }
+    ...mapGetters(['currentTask', 'currentId']),
   },
-  mounted() {
+  async mounted() {
+    await this.getTaskById(this.$route.params.id)
 
-    this.title = this.task.title
-    this.description = this.task.description
+    this.title = this.currentTask.title
+    this.description = this.currentTask.description
 
     this.chips = M.Chips.init(this.$refs.chips, {
       placeholder: 'Task tags',
-      data: this.task.chips
+      data: this.currentTask.chips || ''
     })
 
     this.dueDate = M.Datepicker.init(this.$refs.dueDate, {
       autoClose: true,
       format: 'yyyy-mm-dd',
-      defaultDate: new Date(this.task.dueDate),
+      defaultDate: new Date(this.currentTask.dueDate),
       setDefaultDate: true
     })
 
@@ -107,10 +105,9 @@ export default {
 
   },
   methods: {
-    ...mapActions(['updateTask', 'completeTask']),
+    ...mapActions(['getTaskById', 'updateTask', 'completeTask']),
     submitHandler() {
       this.updateTask({
-        id: this.task.id,
         title: this.title,
         description: this.description,
         chips: this.chips.chipsData,
@@ -119,7 +116,7 @@ export default {
       this.$router.push('/list')
     },
     completeHandler() {
-      this.completeTask(this.task.id)
+      this.completeTask()
       this.$router.push('/list')
     }
   }
