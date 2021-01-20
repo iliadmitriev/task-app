@@ -83,26 +83,28 @@ export default {
   async mounted() {
     await this.getTaskById(this.$route.params.id)
 
-    this.title = this.currentTask.title
-    this.description = this.currentTask.description
+    if (this.currentTask) {
 
-    this.chips = M.Chips.init(this.$refs.chips, {
-      placeholder: 'Task tags',
-      data: this.currentTask.chips || ''
-    })
+      this.title = this.currentTask.title
+      this.description = this.currentTask.description
 
-    this.dueDate = M.Datepicker.init(this.$refs.dueDate, {
-      autoClose: true,
-      format: 'yyyy-mm-dd',
-      defaultDate: new Date(this.currentTask.dueDate),
-      setDefaultDate: true
-    })
+      this.chips = M.Chips.init(this.$refs.chips, {
+        placeholder: 'Task tags',
+        data: this.currentTask.chips || ''
+      })
 
-    setTimeout(() => {
-      M.updateTextFields()
-      M.textareaAutoResize(this.$refs.description)
-    }, 0)
+      this.dueDate = M.Datepicker.init(this.$refs.dueDate, {
+        autoClose: true,
+        format: 'yyyy-mm-dd',
+        defaultDate: new Date(this.currentTask.dueDate),
+        setDefaultDate: true
+      })
 
+      setTimeout(() => {
+        M.updateTextFields()
+        M.textareaAutoResize(this.$refs.description)
+      }, 0)
+    }
   },
   methods: {
     ...mapActions(['getTaskById', 'updateTask', 'completeTask']),
