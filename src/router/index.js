@@ -5,12 +5,12 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/create',
     name: 'create',
     component: () => import('@/views/Create.vue')
   },
   {
-    path: '/list',
+    path: '/',
     name: 'list',
     component: () => import('@/views/List.vue')
   },

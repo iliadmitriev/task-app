@@ -9,7 +9,7 @@
         <ul class="right hide-on-med-and-down">
           <router-link
               tag="li"
-              to="/"
+              to="/create"
               exact
               active-class="active"
           >
@@ -17,7 +17,7 @@
           </router-link>
           <router-link
               tag="li"
-              to="/list"
+              to="/"
               exact
               active-class="active"
           >
@@ -30,7 +30,7 @@
     <ul ref="sidenav" class="sidenav blue lighten-5" id="mobile-demo">
       <router-link
           tag="li"
-          to="/"
+          to="/create"
           exact
           active-class="active"
       >
@@ -38,7 +38,7 @@
       </router-link>
       <router-link
           tag="li"
-          to="/list"
+          to="/"
           exact
           active-class="active"
       >

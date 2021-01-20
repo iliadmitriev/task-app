@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div v-if="task" class="col s12  m10  offset-l2 l8">
+    <div v-if="currentTask" class="col s12  m10  offset-l2 l8">
       <h1>{{ title }}</h1>
       <div class="divider"></div>
       <form @submit.prevent="submitHandler">
@@ -78,49 +78,48 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['taskById']),
-    task() {
-      return this.taskById(+this.$route.params.id)
+    ...mapGetters(['currentTask', 'currentId']),
+  },
+  async mounted() {
+    await this.getTaskById(this.$route.params.id)
+
+    if (this.currentTask) {
+
+      this.title = this.currentTask.title
+      this.description = this.currentTask.description
+
+      this.chips = M.Chips.init(this.$refs.chips, {
+        placeholder: 'Task tags',
+        data: this.currentTask.chips || ''
+      })
+
+      this.dueDate = M.Datepicker.init(this.$refs.dueDate, {
+        autoClose: true,
+        format: 'yyyy-mm-dd',
+        defaultDate: new Date(this.currentTask.dueDate),
+        setDefaultDate: true
+      })
+
+      setTimeout(() => {
+        M.updateTextFields()
+        M.textareaAutoResize(this.$refs.description)
+      }, 0)
     }
   },
-  mounted() {
-
-    this.title = this.task.title
-    this.description = this.task.description
-
-    this.chips = M.Chips.init(this.$refs.chips, {
-      placeholder: 'Task tags',
-      data: this.task.chips
-    })
-
-    this.dueDate = M.Datepicker.init(this.$refs.dueDate, {
-      autoClose: true,
-      format: 'yyyy-mm-dd',
-      defaultDate: new Date(this.task.dueDate),
-      setDefaultDate: true
-    })
-
-    setTimeout(() => {
-      M.updateTextFields()
-      M.textareaAutoResize(this.$refs.description)
-    }, 0)
-
-  },
   methods: {
-    ...mapActions(['updateTask', 'completeTask']),
+    ...mapActions(['getTaskById', 'updateTask', 'completeTask']),
     submitHandler() {
       this.updateTask({
-        id: this.task.id,
         title: this.title,
         description: this.description,
         chips: this.chips.chipsData,
         dueDate: this.dueDate.date
       })
-      this.$router.push('/list')
+      this.$router.push('/')
     },
     completeHandler() {
-      this.completeTask(this.task.id)
-      this.$router.push('/list')
+      this.completeTask()
+      this.$router.push('/')
     }
   }
 }
