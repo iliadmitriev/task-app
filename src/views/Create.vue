@@ -12,7 +12,7 @@
               v-model="title"
           >
           <label for="title">Title</label>
-          <span class="helper-text" data-error="Task title is required" data-success="right"></span>
+          <span class="helper-text" data-error="Task title is required"></span>
         </div>
         <div class="chips" ref="chips"></div>
         <div class="input-field">
