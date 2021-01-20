@@ -72,7 +72,7 @@
         <a
             class="btn-floating btn-large waves-effect waves-light"
             ref="floatingAdd"
-            @click="$router.push('/')"
+            @click="$router.push('/create')"
         >
           <i class="material-icons">add</i>
         </a>
@@ -83,7 +83,7 @@
       <p>You can create new one.</p>
       <button
           class="btn-large"
-          @click="$router.push('/')"
+          @click="$router.push('/create')"
       >
         <i class="material-icons right">arrow_forward</i>
         Create

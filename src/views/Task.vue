@@ -115,11 +115,11 @@ export default {
         chips: this.chips.chipsData,
         dueDate: this.dueDate.date
       })
-      this.$router.push('/list')
+      this.$router.push('/')
     },
     completeHandler() {
       this.completeTask()
-      this.$router.push('/list')
+      this.$router.push('/')
     }
   }
 }

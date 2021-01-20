@@ -22,7 +22,7 @@ const fetchTaskById = id => {
     return httpFirebase('GET', `/task/${id}.json`)
 }
 
-const putTask = async (data) => {
+const postTask = async (data) => {
     return await httpFirebase('POST', `/task.json`, data)
 }
 
@@ -30,4 +30,4 @@ const patchTask = async(id, data) => {
     return await httpFirebase('PATCH', `/task/${id}.json`, data)
 }
 
-export {fetchAllTasks, fetchTaskById, putTask, patchTask}
+export {fetchAllTasks, fetchTaskById, postTask, patchTask}

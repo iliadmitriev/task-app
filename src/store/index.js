@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {fetchAllTasks, fetchTaskById, patchTask, putTask} from '@/store/firebase'
+import {fetchAllTasks, fetchTaskById, patchTask, postTask} from '@/store/firebase'
 
 
 Vue.use(Vuex)
@@ -40,7 +40,7 @@ export default new Vuex.Store({
                 .then(task => ctx.commit('setCurrentTask', {task, id}))
         },
         createTask(ctx, task) {
-            putTask(task)
+            postTask(task)
                 .then(json => json.name)
                 .then((id) => ctx.commit('addTask', {id, task}))
         },
