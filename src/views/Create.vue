@@ -71,7 +71,7 @@ export default {
         status: 'active'
       }
       this.createTask(task)
-      this.$router.push('/list')
+      this.$router.push('/')
     },
     destroyed() {
       if (this.dueDate && this.dueDate.destroy) {
