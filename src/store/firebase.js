@@ -10,10 +10,7 @@ const httpFirebase = (method = 'GET', path, data) => {
         cache: "no-cache",
         body: data ? JSON.stringify(data) : null
     })
-        .then(response => response.json())
-     //   .then(json => Object.entries(json))
-    //.catch(err => JSON.parse('[]'))
-
+        .then(response => response.status === 200 ? response.json() : null)
 }
 
 const fetchAllTasks = () => {
