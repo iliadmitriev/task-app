@@ -1,5 +1,8 @@
 # task-app-idm
 
+List of tasks stored in firebase
+Powered by [materialize-css](https://materializecss.com), vuex, vue-router
+
 ## Project setup
 ```
 npm install
