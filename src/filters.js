@@ -21,3 +21,5 @@ const dateFormat = (value) => {
 
 Vue.filter('truncate', filterTruncate)
 Vue.filter('dateFormat', dateFormat)
+
+export {dateFormat, filterTruncate}
