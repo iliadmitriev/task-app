@@ -27,6 +27,16 @@ module.exports = {
         '.*\\.(js)$': 'babel-jest'
     },
 
+    // By default Jest doesn't transform node_modules
+    // Assuming that they are valid JS files
+    // But sometimes authors doesn't compile their sources,
+    // implying that you will do it
+    // So you have to tell jest to transform specific node_modules
+    // even though they are should be compiled already
+    transformIgnorePatterns: [
+        'node_modules/(?!register-service-worker)'
+    ],
+
     collectCoverage: true,
     collectCoverageFrom: ['src/**/*.{js,vue}', '!**/node_modules/**'],
     coveragePathIgnorePatterns: [],
