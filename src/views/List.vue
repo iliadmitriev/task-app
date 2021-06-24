@@ -94,7 +94,7 @@
       <p>May be you have set a dense filter</p>
       <button
           class="btn-large red"
-          @click="filterByStatus=''; $filterByStatus.input.value='All'"
+          @click="filterByStatusHandler"
       >
         <i class="material-icons right">close</i>
         clear filter
@@ -150,6 +150,10 @@ export default {
     },
     isCompleted(t) {
       return t.status === 'completed'
+    },
+    filterByStatusHandler() {
+      this.filterByStatus=''
+      this.$filterByStatus.input.value='All'
     },
     destroyed() {
       if (this.$filterByStatus && this.$filterByStatus.destroy) {
