@@ -1,25 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import routes from '@/router/routes'
 
 Vue.use(VueRouter)
-
-const routes = [
-  {
-    path: '/create',
-    name: 'create',
-    component: () => import('@/views/Create.vue')
-  },
-  {
-    path: '/',
-    name: 'list',
-    component: () => import('@/views/List.vue')
-  },
-  {
-    path: '/task/:id',
-    name: 'task',
-    component: () => import('@/views/Task.vue')
-  }
-]
 
 const router = new VueRouter({
   mode: 'history',

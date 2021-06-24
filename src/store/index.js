@@ -36,7 +36,7 @@ export default new Vuex.Store({
                 .then((tasks) => ctx.commit('loadTasks', tasks || {}))
         },
         async getTaskById(ctx, id) {
-             await fetchTaskById(id)
+            await fetchTaskById(id)
                 .then(task => ctx.commit('setCurrentTask', {task, id}))
         },
         createTask(ctx, task) {
