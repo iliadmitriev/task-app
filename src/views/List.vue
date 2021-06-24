@@ -138,7 +138,10 @@ export default {
     if (this.tasks.length) {
       M.FloatingActionButton.init(this.$refs.floatingAdd, {})
     }
-    this.$filterByStatus = M.FormSelect.init(this.$refs.filterStatus, {})
+    this.$filterByStatus = M.FormSelect.init(
+        document.querySelector('#filterByStatus'),
+        {}
+    )
   },
   methods: {
     ...mapActions(['getAllTasks']),
