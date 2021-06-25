@@ -1,4 +1,4 @@
-const httpFirebase = (method = 'GET', path, data) => {
+export const httpFirebase = (method = 'GET', path, data) => {
     const urlBase = 'https://task-app-idm-default-rtdb.europe-west1.firebasedatabase.app'
     const url = `${urlBase}${path}`
     return fetch(url, {
