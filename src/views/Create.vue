@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     ...mapActions(['createTask']),
-    submitHandler() {
+    async submitHandler() {
       const task = {
         title: this.title,
         description: this.description,
@@ -70,8 +70,8 @@ export default {
         dueDate: this.dueDate.date,
         status: 'active'
       }
-      this.createTask(task)
-      this.$router.push('/')
+      await this.createTask(task)
+      await this.$router.push('/')
     },
     destroyed() {
       if (this.dueDate && this.dueDate.destroy) {
