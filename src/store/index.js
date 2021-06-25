@@ -15,12 +15,12 @@ export default new Vuex.Store({
         loadTasks(state, tasks) {
             state.tasks = tasks
         },
-        addTask(state, {idx, task}) {
-            state.tasks[idx] = task
+        addTask(state, {id, task}) {
+            state.tasks[id] = task
         },
-        saveTask(state, {idx, task}) {
-            const oldTask = state.tasks[idx]
-            state.tasks[idx] = {
+        saveTask(state, {id, task}) {
+            const oldTask = state.tasks[id]
+            state.tasks[id] = {
                 ...oldTask,
                 ...task
             }
@@ -31,31 +31,31 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        getAllTasks(ctx) {
-            fetchAllTasks()
+        async getAllTasks(ctx) {
+            await fetchAllTasks()
                 .then((tasks) => ctx.commit('loadTasks', tasks || {}))
         },
         async getTaskById(ctx, id) {
             await fetchTaskById(id)
                 .then(task => ctx.commit('setCurrentTask', {task, id}))
         },
-        createTask(ctx, task) {
-            postTask(task)
-                .then(json => json.name)
+        async createTask(ctx, task) {
+            await postTask(task)
+                .then(json => json.name )
                 .then((id) => ctx.commit('addTask', {id, task}))
         },
-        updateTask(ctx, task) {
-            const idx = ctx.state.currentId
-            patchTask(idx, task)
-                .then(() => ctx.commit('saveTask', {idx, task}))
+        async updateTask(ctx, task) {
+            const id = ctx.state.currentId
+            await patchTask(id, task)
+                .then(() => ctx.commit('saveTask', {id, task}))
         },
-        completeTask(ctx) {
-            const idx = ctx.state.currentId
-            const data = {
+        async completeTask(ctx) {
+            const id = ctx.state.currentId
+            const task = {
                 status: 'completed'
             }
-            patchTask(idx, data)
-                .then(() => ctx.commit('saveTask', {idx, data}))
+            await patchTask(id, task)
+                .then(() => ctx.commit('saveTask', {id, task}))
         }
     },
     getters: {
