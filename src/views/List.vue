@@ -94,6 +94,7 @@
       <p>May be you have set a dense filter</p>
       <button
           class="btn-large red"
+          id="filterClear"
           @click="filterByStatusHandler"
       >
         <i class="material-icons right">close</i>
@@ -154,13 +155,12 @@ export default {
     filterByStatusHandler() {
       this.filterByStatus=''
       this.$filterByStatus.input.value='All'
-    },
-    destroyed() {
-      if (this.$filterByStatus && this.$filterByStatus.destroy) {
-        this.$filterByStatus.destroy()
-      }
     }
-
+  },
+  destroyed() {
+    if (this.$filterByStatus && this.$filterByStatus.destroy) {
+      this.$filterByStatus.destroy()
+    }
   }
 }
 </script>
