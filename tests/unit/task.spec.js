@@ -16,7 +16,7 @@ const router_push = jest.fn()
 const task = {
     "chips": [{"tag": "tag"}],
     "description": "task description",
-    "dueDate": "2021-01-02T21:00:00.000Z",
+    "dueDate": "2021-01-02T12:00:00.000Z",
     "status": "active",
     "title": "task title"
 }
@@ -61,7 +61,7 @@ describe('Task.vue component test', () => {
         await wrapper.vm.$nextTick()
 
         expect(wrapper.find('#dueDate').element.value)
-            .toBe('2021-01-03')
+            .toBe('2021-01-02')
 
         expect(wrapper.find('#description').element.value)
             .toBe('task description')
@@ -129,7 +129,7 @@ describe('Task.vue component test', () => {
         const currentTask = jest.fn()
         currentTask.mockReturnValue({
             "description": "task description",
-            "dueDate": "2021-01-02T21:00:00.000Z",
+            "dueDate": "2021-01-02T12:00:00.000Z",
             "status": "active",
             "title": "task title"
         })
