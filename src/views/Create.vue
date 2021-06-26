@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col s12  m10  offset-l2 l8">
       <h1>Create</h1>
-      <form @submit.prevent="submitHandler">
+      <form @submit.prevent="submitHandler" id="createTask">
         <div class="input-field">
           <input
               id="title"
@@ -72,14 +72,14 @@ export default {
       }
       await this.createTask(task)
       await this.$router.push('/')
-    },
-    destroyed() {
-      if (this.dueDate && this.dueDate.destroy) {
-        this.dueDate.destroy()
-      }
-      if (this.chips && this.chips.destroy) {
-        this.chips.destroy()
-      }
+    }
+  },
+  destroyed() {
+    if (this.dueDate && this.dueDate.destroy) {
+      this.dueDate.destroy()
+    }
+    if (this.chips && this.chips.destroy) {
+      this.chips.destroy()
     }
   }
 }
