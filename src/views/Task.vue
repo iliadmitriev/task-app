@@ -3,7 +3,7 @@
     <div v-if="currentTask" class="col s12  m10  offset-l2 l8">
       <h1>{{ title }}</h1>
       <div class="divider"></div>
-      <form @submit.prevent="submitHandler">
+      <form @submit.prevent="submitHandler" id="taskSubmitForm">
         <div class="input-field">
           <input
               id="title"
@@ -51,6 +51,7 @@
             type="button"
             class="waves-effect waves-light btn-large blue col s5 offset-s1"
             @click="completeHandler"
+            id="completeHandler"
         >
           <i class="material-icons left">check</i>
           Complete
@@ -100,10 +101,8 @@ export default {
         setDefaultDate: true
       })
 
-      setTimeout(() => {
-        M.updateTextFields()
-        M.textareaAutoResize(this.$refs.description)
-      }, 0)
+      M.updateTextFields()
+      M.textareaAutoResize(this.$refs.description)
     }
   },
   methods: {
