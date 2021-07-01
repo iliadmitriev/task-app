@@ -40,16 +40,14 @@
           <td>{{ i + 1 }}</td>
           <td>
             <router-link
-                tag="a"
-                :to="'/task/' + task.id"
+                :to="{name: 'task', params: {id: task.id}}"
             >
               {{ task.title }}
             </router-link>
           </td>
           <td>
             <router-link
-                tag="a"
-                :to="'/task/' + task.id"
+                :to="{name: 'task', params: {id: task.id}}"
             >
               {{ task.description | truncate(50) }}
             </router-link>
