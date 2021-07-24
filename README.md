@@ -1,4 +1,6 @@
 # task-app-idm
+[![Install, Test, Build](https://github.com/iliadmitriev/task-app/actions/workflows/firebase-hosting-merge.yml/badge.svg)](https://github.com/iliadmitriev/task-app/actions/workflows/firebase-hosting-merge.yml)
+[![codecov](https://codecov.io/gh/iliadmitriev/task-app/branch/master/graph/badge.svg?token=LGBXPJDVB2)](https://codecov.io/gh/iliadmitriev/task-app)
 
 List of tasks with three pages
 * Main page, displaying a list of tasks with filter
