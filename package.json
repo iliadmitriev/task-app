@@ -17,7 +17,7 @@
     "vuex": "^3.4.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.8",
+    "@babel/core": "^7.17.10",
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@vue/cli-plugin-babel": "~4.5.15",
@@ -30,7 +30,7 @@
     "babel-jest": "^27.5.1",
     "jest": "^27.5.1",
     "jest-transform-stub": "^2.0.0",
-    "sass": "^1.49.9",
+    "sass": "^1.51.0",
     "sass-loader": "^10.2.0",
     "vue-jest": "^3.0.7",
     "vue-template-compiler": "^2.6.14"
